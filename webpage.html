@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>How-To Guide</title>
+  </head>
+  <body>
+    <h1>GitHub API - How To Guide</h1>
+    
+    <h1>Issues</h1>
+    https://developer.github.com/v3/issues/
+    
+    <!-- Displaying all issues -->
+    <h2>All Issues</h2>
+    <p>
+      All issues for a GitHub repository can be fetched via a GET request
+      using the GitHub API.   
+    </p>
+    <input type="submit" id="getAllIssues">
+    <div id="allIssues"></div>
+    <pre><code>
+      TODO: Put some code here
+    </code></pre>
+
+    <!-- Displaying single issues -->
+    <h2>Individual Issues</h2>
+    <p>
+      Individual issues for a repository can be retrieved as well.
+    </p>
+    <form>
+      <input type="number" id='enteredIssueNum' min="1" size="5">
+      <input type="submit" id="getOneIssue">
+    </form>
+    <div id="singleIssue"></div>
+    <pre><code>
+      TODO: Put some code here
+    </code></pre>
+    
+    <h2>Repository Code-Base</h2>
+    <h3>Get a File From a Repository</h3>
+    https://developer.github.com/v3/repos/contents/#get-contents
+    <p>
+      Get a single file from a repository.
+    </p>
+    <form>
+      <input type="text" id='filename' >
+      <input type="submit" id="getOneFile">
+    </form>
+    <div id="singleFile"></div>
+    <pre><code>
+      TODO: Put some code here
+    </code></pre>
+    
+    <script src="issues.js"></script>
+    <script src="codebase.js"></script>
+  </body>
+</html>
