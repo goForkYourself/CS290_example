@@ -1,57 +1,107 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>How-To Guide</title>
   </head>
+
   <body>
-    <h1>GitHub API - How To Guide</h1>
     
+  <div class="row content col-md-5">
+    <h1>GitHub API - How-To Guide</h1>
     <h1>Issues</h1>
     https://developer.github.com/v3/issues/
-    
     <!-- Displaying all issues -->
     <h2>All Issues</h2>
-    <p>
-      All issues for a GitHub repository can be fetched via a GET request
-      using the GitHub API.   
-    </p>
+      <p>
+        All issues for a GitHub repository can be fetched via a GET request
+        using the GitHub API. The repository must be publically accessible.
+        To retrieve all of the issues for a repository, a get request to 
+        <code>/repos/:owner/:repo/issues</code> is made, where <code>:owner</code>
+        is the owner of the repository and <code>:repo</code> is the repository.
+        This returns a JSON array where each element represents an issue.          
+      </p>
+      <p>
+        Each element contains information about the issue such as milestones
+        attached, the state of the issue (open, closed, or all), and more.
+        Obviously, it also contains the title of the issue, the issue description,
+        and any comments that have been made about the issue.
+      </p>
+      <p>Below is asynchronous Javascript that can be used to request all of the
+        issues for a repository.
+      </p>
+      <pre><code>
+        TODO: Put some code here
+      </code></pre>
+    Click the "submit" button to see this code in action and see all of the 
+    issues for the repository that contains this site's code.  
     <input type="submit" id="getAllIssues">
     <div id="allIssues"></div>
-    <pre><code>
-      TODO: Put some code here
-    </code></pre>
 
     <!-- Displaying single issues -->
     <h2>Individual Issues</h2>
-    <p>
-      Individual issues for a repository can be retrieved as well.
-    </p>
+      <p>
+        Individual issues for a repository can be retrieved as well. These are
+        accessed in the same manner as all issues from the repository, except
+        that <code>:number</code>, which is the issue's number, is appended to 
+        the request url. If the requested number for an issue does not exist, 
+        a "Not Found" message is returned. 
+      </p>
+      <p>Below is example code for requesting a single issue from the repository
+        that contains this site's code.
+      </p>
+      <pre><code>
+        TODO: Put some code here
+      </code></pre>
+      Select a number and click the "submit" button to retrieve a single 
+      issue from the test repository.
     <form>
       <input type="number" id='enteredIssueNum' min="1" size="5">
       <input type="submit" id="getOneIssue">
     </form>
     <div id="singleIssue"></div>
-    <pre><code>
-      TODO: Put some code here
-    </code></pre>
     
+    <h3>More GitHub Issue Features</h3>
+    <p>The GitHub API supports many more issue features, such as 
+      creating, editing, locking, and unlocking issues. 
+    </p>
+
     <h2>Repository Code-Base</h2>
     <h3>Get a File From a Repository</h3>
     https://developer.github.com/v3/repos/contents/#get-contents
-    <p>
-      Get a single file from a repository. First, the information for 
-      a file needs to be fetched from the repository. It can then be 
-      accessed via the "download_url" paramater in another request.
-    </p>
+      <p>
+      The GitHub API allows code to be fetched from a public repository
+      through GET requests. A single file from a repository can be 
+      retrieved by accessing the 
+      <code>/repos/:owner/:repo/contents/:filepath</code>. 
+      Information about the file is sent in the response, as well as 
+      the file contents sent in base64 encoding. This needs to be decoded 
+      using a base64 decoder, such as <code>atob()</code>. 
+      </p>
+      <p>Below is example code that will retrieve a file from a repo
+        with an asynchronous Javascript GET request.
+      </p>
+      <pre><code>
+        TODO: Put some code here
+      </code></pre>
+      Enter the name of a file (or use the default value) to retrieve 
+      it from the repo that the code for this site is contained in.
     <form>
-      <input type="text" id='filename' placeholder="issues.js">
+      <input type="text" id='filename' placeholder="issues.js" value="issues.js">
       <input type="submit" id="getOneFile">
     </form>
     <div id="singleFile"></div>
-    <pre><code>
-      TODO: Put some code here
-    </code></pre>
+    </div>
+    
+    
+    <h3>More Repository Contents Features</h3>
+    <p>
+      The GitHub API allows one to do much more with the contents of a
+      repository. TODO SAY MORE HERE 
+    </p>
     
     <script src="issues.js"></script>
     <script src="codebase.js"></script>

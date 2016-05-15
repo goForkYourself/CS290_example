@@ -14,7 +14,6 @@ function getRequest(payload, func){
         func(null);
       }});
     req.send(null);
-    event.preventDefault();
 }
 
 document.getElementById('getOneFile').addEventListener('click', function(event){
@@ -25,6 +24,7 @@ document.getElementById('getOneFile').addEventListener('click', function(event){
         var url = apiURL+user+myRepo+'contents/' + filePath;
         getRequest(url, getSingleFile);
     }
+    event.preventDefault();
 });
 
 function getSingleFile(file){
@@ -50,6 +50,7 @@ function createFileNode(file){
     // if(txt === null){ return; }
     
     var pre = document.createElement('pre');
+    pre.className = 'code';
     var code = document.createElement('code');
     code.innerHTML = atob(file.content);//.toString('utf8'); 
     

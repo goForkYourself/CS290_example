@@ -13,12 +13,12 @@ function getRequest(payload, func){
         func(null);
       }});
     req.send(null);
-    event.preventDefault();
 }
 
 document.getElementById('getAllIssues').addEventListener('click', function(event){
     var url = apiURL + user + myRepo + 'issues';
     getRequest(url, addIssues);
+    event.preventDefault();
 });
 
 document.getElementById('getOneIssue').addEventListener('click', function(event){
@@ -28,6 +28,7 @@ document.getElementById('getOneIssue').addEventListener('click', function(event)
         var url = apiURL + user + myRepo + 'issues/' + num;
         getRequest(url, addSingleIssue);
     }
+    event.preventDefault();
 });
 
 function addSingleIssue(issue){
