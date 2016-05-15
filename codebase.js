@@ -52,7 +52,7 @@ function createFileNode(file){
     var pre = document.createElement('pre');
     pre.className = 'code';
     var code = document.createElement('code');
-    code.innerHTML = atob(file.content);//.toString('utf8'); 
+    code.innerHTML = atob(file.content); 
     
     pre.appendChild(code);
     fileNode.appendChild(pre);

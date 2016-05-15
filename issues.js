@@ -32,7 +32,7 @@ document.getElementById('getOneIssue').addEventListener('click', function(event)
 });
 
 function addSingleIssue(issue){
-    clearNode('allIssues');
+    clearNode('singleIssue');
     var issueElem = document.getElementById('singleIssue');
     if(issue === null){
         issueElem.innerHTML = 'The specified issue was not found.'

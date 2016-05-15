@@ -10,7 +10,7 @@
 
   <body>
     
-  <div class="row content col-md-5">
+  <div class="row content col-md-10" style="margin-left:50px;">
     <h1>GitHub API - How-To Guide</h1>
     <h1>Issues</h1>
     https://developer.github.com/v3/issues/
@@ -31,13 +31,39 @@
         and any comments that have been made about the issue.
       </p>
       <p>Below is asynchronous Javascript that can be used to request all of the
-        issues for a repository.
+        issues for a repository. 
       </p>
       <pre><code>
-        TODO: Put some code here
+        function getAllIssues(){
+          var req = new XMLHttpRequest();
+          var url = ' https://api.github.com/repos/:owner/:repo/issues' 
+          req.open('GET', url, true);
+          req.addEventListener('load',function(){
+            if(req.status >= 200 && req.status < 400){
+              var response = JSON.parse(req.responseText);
+              parseAllIssues(response);
+            } else {
+              parseAllIssues(null);
+            }});
+          req.send(null);
+        }
+        
+        function parseAllIssues(issues){
+          if(issues.length == 0){
+            // The repository has no issues
+          } else if(issues === null){
+            // Something went wrong.
+          } else{
+            issues.forEach(function (issue, i) {
+              // Use the issue's information
+            });
+          }
+        }
       </code></pre>
+      
     Click the "submit" button to see this code in action and see all of the 
     issues for the repository that contains this site's code.  
+    <br>
     <input type="submit" id="getAllIssues">
     <div id="allIssues"></div>
 
@@ -54,7 +80,27 @@
         that contains this site's code.
       </p>
       <pre><code>
-        TODO: Put some code here
+        function getAllIssues(){
+          var req = new XMLHttpRequest();
+          var url = ' https://api.github.com/repos/:owner/:repo/issues/:number' 
+          req.open('GET', url, true);
+          req.addEventListener('load',function(){
+            if(req.status >= 200 && req.status < 400){
+              var response = JSON.parse(req.responseText);
+              parseIssues(response);
+            } else {
+              parseIssues(null);
+            }});
+          req.send(null);
+        }
+        
+        function parseIssue(issue){
+          if(issue === null){
+            // Something went wrong.
+          } else{
+            // Use the issue's information
+          }
+        }
       </code></pre>
       Select a number and click the "submit" button to retrieve a single 
       issue from the test repository.
@@ -66,7 +112,10 @@
     
     <h3>More GitHub Issue Features</h3>
     <p>The GitHub API supports many more issue features, such as 
-      creating, editing, locking, and unlocking issues. 
+      creating, editing, locking, and unlocking issues. These features 
+      are all accessed in the same way as the previous examples. The 
+      GET urls that are used to retrieve this data can be found in the 
+      GitHub API documentation. 
     </p>
 
     <h2>Repository Code-Base</h2>
@@ -85,7 +134,29 @@
         with an asynchronous Javascript GET request.
       </p>
       <pre><code>
-        TODO: Put some code here
+        function getAllIssues(){
+          var req = new XMLHttpRequest();
+          var url = ' https://api.github.com/repos/:owner/:repo/coontents/:filepath' 
+          req.open('GET', url, true);
+          req.addEventListener('load',function(){
+            if(req.status >= 200 && req.status < 400){
+              var response = JSON.parse(req.responseText);
+              parseFile(response);
+            } else {
+              parseFile(null);
+            }});
+          req.send(null);
+        }
+        
+        function parseFile(file){
+          if(issue === null){
+            // Something went wrong.
+          } else{
+            // Use the issue's information
+            // the contents of the file are encoded in base64.
+            var code = atob(file.content);
+          }
+        }
       </code></pre>
       Enter the name of a file (or use the default value) to retrieve 
       it from the repo that the code for this site is contained in.
@@ -94,15 +165,38 @@
       <input type="submit" id="getOneFile">
     </form>
     <div id="singleFile"></div>
-    </div>
     
     
     <h3>More Repository Contents Features</h3>
     <p>
       The GitHub API allows one to do much more with the contents of a
-      repository. TODO SAY MORE HERE 
+      repository. the API allows one to perform nearly any operation 
+      supported by GitHub, such as creating, updating, and deleting files,
+      which is very useful for the many GitHub plugins that provide useful
+      repository features. Many of these features require authentication 
+      because of the private nature of much of GitHub's contents. This
+      authentication can be provided in several different ways, which
+      can be found on the authentication page of the GitHub API 
+      documentation. 
     </p>
     
+    <h2>Conclusion</h2>
+    <p>
+      The GitHub API provides an immense amount of functionality for
+      anyone to use, which has allowed a large number of programmers
+      to provide useful plug-ins, add-ons, and external sites that
+      make software development using git much cleaner and easier to
+      manage. 
+    </p>
+    <p>
+      Because of the expansiveness of the GitHub API and the functionality 
+      that it provides, this how-to guide is only able to provide a brief
+      introduction to a couple of the features of the GitHub API and how 
+      to use it via Javascript in a browser. It provides many more features 
+      than those that are shown here from creating pull requests and searching 
+      a repo, to retrieving all of the emojis that GitHub supports. 
+    </p>
+    </div>
     <script src="issues.js"></script>
     <script src="codebase.js"></script>
   </body>
