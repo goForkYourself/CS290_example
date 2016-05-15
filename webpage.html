@@ -40,10 +40,12 @@
     <h3>Get a File From a Repository</h3>
     https://developer.github.com/v3/repos/contents/#get-contents
     <p>
-      Get a single file from a repository.
+      Get a single file from a repository. First, the information for 
+      a file needs to be fetched from the repository. It can then be 
+      accessed via the "download_url" paramater in another request.
     </p>
     <form>
-      <input type="text" id='filename' >
+      <input type="text" id='filename' placeholder="issues.js">
       <input type="submit" id="getOneFile">
     </form>
     <div id="singleFile"></div>
